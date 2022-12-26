@@ -18,3 +18,7 @@ Then, you need to do a cost analysis to check the percentage of adherence (from 
 * Reduce the costs associated to heart attacks in the national healthcare system by a 20%
 
 ## Data mining goals
+* Recognize patterns on the health habits of people
+    * Behavioral patterns
+    * Behavioral + health consequences patterns
+* Predict if a person is going to follow the plan or not (we don't data for this right now)
