@@ -19,6 +19,13 @@ Then, you need to do a cost analysis to check the percentage of adherence (from 
 
 ## Data mining goals
 * Recognize patterns on the health habits of people
-    * Behavioral patterns
-    * Behavioral + health consequences patterns
-* Predict if a person is going to follow the plan or not (we don't data for this right now)
+* Predict if the probability of a person having a heart attack or disease
+* Select threshold for the percentage of adherence to achieve business goal
+
+## Next steps
+1. Probabilistic classification algorithm (e.g. `Logistic Regression`) with target variable `HeartDiseaseorAttack`
+2. Select threshold to find people that we are going to offer the plan
+3. Randomly apply assumption that 85% of people will accept the plan
+4. Select the minimum percentage of adherence to the plan to fulfill business goal
+
+
