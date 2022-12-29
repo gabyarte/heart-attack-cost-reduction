@@ -4,6 +4,7 @@ import numpy as np
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import MinMaxScaler
 
 
 class AssignTransformer(BaseEstimator, TransformerMixin):
@@ -23,19 +24,8 @@ class AssignTransformer(BaseEstimator, TransformerMixin):
         return X_.assign(**self.assign_map)
 
 
-class SimpleImputerTransformer(SimpleImputer):
-    def __init__(self, missing_values=np.nan, strategy="mean", fill_value=None,
-                 verbose="deprecated", copy=True, add_indicator=False):
-        self.feature_names = None
-        super().__init__(
-            missing_values=missing_values,
-            strategy=strategy,
-            fill_value=fill_value,
-            verbose=verbose,
-            copy=copy,
-            add_indicator=add_indicator)
-
-    def fit( self, X, y=None ):
+class PandasTransformerMixin:
+    def fit(self, X, y=None ):
         X_ = X.copy()
         self.feature_names = list(X_.columns)
         return super().fit(X_)
@@ -45,6 +35,14 @@ class SimpleImputerTransformer(SimpleImputer):
         _transform = pd.DataFrame(super().transform(X_), index=X_.index)
         _transform.columns = self.feature_names
         return _transform
+
+
+class SimpleImputerTransformer(PandasTransformerMixin, SimpleImputer):
+    pass
+
+
+class MinMaxScalerTransformer(PandasTransformerMixin, MinMaxScaler):
+    pass
 
 
 class PandasColumnTransformer(ColumnTransformer):
