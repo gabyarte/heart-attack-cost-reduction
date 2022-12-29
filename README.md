@@ -22,8 +22,15 @@ Then, you need to do a cost analysis to check the percentage of adherence (from 
 * Predict if the probability of a person having a heart attack or disease
 * Select threshold for the percentage of adherence to achieve business goal
 
+## Scope
+
+**Assumptions**:
+* 85% of the people who is offered the plan would accept it
+* Treating a person who has suffered a heart attack is of €50,000 in average, while the customized plan for a person costs €1,000
+* The people who already had a heart attack haven't changed their life style after it
+
 ## Next steps
-1. Probabilistic classification algorithm (e.g. `Logistic Regression`) with target variable `HeartDiseaseorAttack`
+1. Probabilistic classification algorithm (e.g. `Logistic Regression`, `DiscriminantAnalysis`) with target variable `HeartDiseaseorAttack`
 2. Select threshold to find people that we are going to offer the plan
 3. Randomly apply assumption that 85% of people will accept the plan
 4. Select the minimum percentage of adherence to the plan to fulfill business goal
