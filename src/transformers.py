@@ -5,6 +5,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.feature_selection import SelectKBest
 
 
 class AssignTransformer(BaseEstimator, TransformerMixin):
@@ -55,3 +56,12 @@ class PandasColumnTransformer(ColumnTransformer):
             return pd.concat(Xs, axis='columns', copy=False)
         else:
             return super()._hstack(Xs)
+
+
+class SelectKBestTransformer(SelectKBest):
+    def transform(self, X, y=None):
+        _transform = pd.DataFrame(
+            super().transform(X),
+            index=X.index,
+            columns=self.get_feature_names_out(X.columns))
+        return _transform
